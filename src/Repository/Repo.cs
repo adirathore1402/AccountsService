@@ -12,10 +12,11 @@ namespace AccountsService.Repository
 
         public Repo()
         {
+   // endpoint should be extracted
             client = new CosmosClient(
                 accountEndpoint: "https://yasagrawalcosmosacc.documents.azure.com:443/",
                 tokenCredential: new DefaultAzureCredential());
-
+    // ids should be extracted
             var database = client.GetDatabase(id: "aurora-platform-db");
             container = database.GetContainer(id: "Accounts-<ReplaceWithYourName>");
         }
@@ -39,7 +40,7 @@ namespace AccountsService.Repository
                     return item;
                 }
             }
-
+            // 
             return null;
         }
 
