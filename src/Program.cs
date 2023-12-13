@@ -1,4 +1,8 @@
-var builder = WebApplication.CreateBuilder(args);
+namespace AccountsService
+{
+    public class Program
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -23,3 +27,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+    }
+}
