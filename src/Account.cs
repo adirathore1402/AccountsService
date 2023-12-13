@@ -6,7 +6,7 @@ namespace AccountsService
         public string Password { get; set; }
 
         public Guid id { get; set; }
-
+        // are we sure we want to expose the balance with set?
         public double Balance {  get; set; }
         public DateTime OpeningDate {  get; set; }
 
