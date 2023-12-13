@@ -11,6 +11,7 @@ namespace AccountsService.Controllers
 
         public AccountController()
         {
+            // since this is a service, could be injected as dependency
             repo = new Repo();
         }
 
@@ -33,6 +34,8 @@ namespace AccountsService.Controllers
             var account = await repo.Get(accountId);
             account.Balance += amount;
 
+    // BuildWithAmount could be renamed to WithAmount
+    // credit should be extracted
             account.Transactions.Add(new TransactionBuilder()
                 .BuildWithAmount(amount)
                 .BuildWithType("credit")
@@ -49,6 +52,7 @@ namespace AccountsService.Controllers
             var account = await repo.Get(id);
             account.Balance -= amount;
 
+            // debit should be extracted 
             account.Transactions.Add(new TransactionBuilder()
                 .BuildWithAmount(amount)
                 .BuildWithType("debit")
@@ -64,6 +68,8 @@ namespace AccountsService.Controllers
         {
             var account = await repo.Get(id);
 
+        // below format style is being repeated, could be extracted and reused
+        
             if (target == "passbook")
             {
                 var header = string.Format("{0,-20} | {1,-10} | {2,-10} | {3,-10}\n", "Date", "Type", "Amount", "Balance");
@@ -74,6 +80,7 @@ namespace AccountsService.Controllers
                 }
                 return passbook;
             }
+            // statement string and "statement" can be extracted
             else if (target == "statement")
             {
 
